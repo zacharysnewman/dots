@@ -23,11 +23,3 @@ for (const entry of brailleEntries) {
   console.log(`  [${entry[0]}, "${entry[1]}"],`);
 }
 console.log("]);");
-
-// Example usage:
-const byteValue = "0b00000001";
-console.log(
-  `Example usage: brailleDictionary.get(${byteValue}) = ${
-    brailleEntries.find((entry) => entry[0] === byteValue)[1]
-  }`
-);
