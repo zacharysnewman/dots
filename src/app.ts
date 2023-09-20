@@ -11,19 +11,22 @@ function clearTerminal(): void {
   process.stdout.write(clearScreen);
 }
 
+const updateGameObject = (gameObject: GameObject, x: number, y: number) => {
+  clearTerminal();
+  screenBuffer.clear();
+  gameObject.x = x;
+  gameObject.y = y;
+  screenBuffer.renderObject(gameObject);
+  screenBuffer.render();
+};
+
 async function main() {
   const gameObject = new GameObject(0, 0, 4, 4, 1);
 
-  for (let y = 0; y < screenHeight; y += 4) {
+  for (let y = 0; y < screenHeight; y++) {
     for (let x = 0; x < screenWidth; x++) {
-      clearTerminal();
-      screenBuffer.clear();
-      gameObject.x = x;
-      gameObject.y = y;
-      screenBuffer.renderObject(gameObject);
-      screenBuffer.render();
-      console.log({ x, y });
-      await waitForMs(10);
+      updateGameObject(gameObject, x, y);
+      await waitForMs(100);
     }
   }
 }
